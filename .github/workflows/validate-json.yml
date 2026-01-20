@@ -38,33 +38,60 @@ jobs:
             exit 1
           }
           
-          for ($i = 0; $i -lt $json.Count; $i++) {
-            $entry = $json[$i]
-            $entryName = if ($entry.owner) { $entry.owner } else { "Entry $i" }
+          foreach ($entry in $json) {
+            $entryName = if ($entry.owner) { $entry.owner } else { "Unknown entry" }
             
             foreach ($field in $requiredFields) {
               if (-not $entry.PSObject.Properties[$field]) {
-                $errors += "Entry '$entryName' (index $i): Missing required field '$field'"
+                $errors += "Entry '$entryName': Missing required field '$field'"
               }
             }
             
             # Validate field types
             if ($null -ne $entry.public -and $entry.public -isnot [bool]) {
-              $errors += "Entry '$entryName' (index $i): Field 'public' must be a boolean"
+              $errors += "Entry '$entryName': Field 'public' must be a boolean"
             }
             
             # Validate URL format
             if ($entry.url -and $entry.url -notmatch '^https?://') {
-              $errors += "Entry '$entryName' (index $i): Field 'url' must be a valid HTTP(S) URL"
+              $errors += "Entry '$entryName': Field 'url' must be a valid HTTP(S) URL"
             }
             
             if ($entry.viewfeed -and $entry.viewfeed -notmatch '^https?://') {
-              $errors += "Entry '$entryName' (index $i): Field 'viewfeed' must be a valid HTTP(S) URL"
+              $errors += "Entry '$entryName': Field 'viewfeed' must be a valid HTTP(S) URL"
             }
             
             # Validate email format
             if ($entry.contact -and $entry.contact -notmatch '@') {
-              $errors += "Entry '$entryName' (index $i): Field 'contact' must be a valid email address"
+              $errors += "Entry '$entryName': Field 'contact' must be a valid email address"
+            }
+            
+            # Validate patterns array
+            if ($entry.PSObject.Properties['patterns']) {
+              if ($entry.patterns -isnot [System.Array]) {
+                $errors += "Entry '$entryName': Field 'patterns' must be an array"
+              }
+              else {
+                foreach ($pattern in $entry.patterns) {
+                  if ($pattern -isnot [string]) {
+                    $errors += "Entry '$entryName': Field 'patterns' contains a non-string value"
+                  }
+                }
+              }
+            }
+            
+            # Validate fingerprints array
+            if ($entry.PSObject.Properties['fingerprints']) {
+              if ($entry.fingerprints -isnot [System.Array]) {
+                $errors += "Entry '$entryName': Field 'fingerprints' must be an array"
+              }
+              else {
+                foreach ($fingerprint in $entry.fingerprints) {
+                  if ($fingerprint -isnot [string]) {
+                    $errors += "Entry '$entryName': Field 'fingerprints' contains a non-string value"
+                  }
+                }
+              }
             }
           }
           
