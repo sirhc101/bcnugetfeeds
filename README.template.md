@@ -7,6 +7,9 @@ If the feed is private, the contact column contains the email address to contact
 |---|:--:|---|:--:|:--:|:--:|
 {{TABLE_ROWS}}
 
+## Using
+Please find information about how to use NuGet feeds in AL-Go for GitHub [here](./AL-Go.md).
+
 ## Contributing
 
 > **⚠️ Important:**  
