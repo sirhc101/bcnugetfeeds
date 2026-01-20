@@ -19,7 +19,7 @@ Please find information about how to use NuGet feeds in AL-Go for GitHub [here](
 > **⚠️ Important:**  
 > Please do not include any information, which you are not allowed to share
 
-If you are aware of NuGet feeds, which should be in this list, please create a PR, adding the Business Central NuGet feed to BcNuGetFeeds.json in the following format:
+If you are aware of NuGet feeds, which should be in this list, please create a PR on https://github.com/directions4partners/BcNuGetFeeds, adding the Business Central NuGet feed to BcNuGetFeeds.json in the following format:
 
 ```json
     {
