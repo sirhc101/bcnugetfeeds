@@ -8,14 +8,18 @@ If the feed is private, the contact column contains the email address to contact
 {{TABLE_ROWS}}
 
 ## Contributing
-Please create a PR, adding your Business Central NuGet feeds to BcNuGetFeeds.json in the following format:
+
+> **⚠️ Important:**  
+> Please do not include any information, which you are not allowed to share
+
+If you are aware of NuGet feeds, which should be in this list, please create a PR, adding the Business Central NuGet feed to BcNuGetFeeds.json in the following format:
 
 ```json
     {
         "owner": "Legal entity owning the NuGet feed",
         "public": true,
         "description": "Feed description",
-        "contact": "contact email",
+        "contact": "contact email (optional if public feed)",
         "viewfeed": "URL where you can view the feed content",
         "url": "NuGet server Url",
         "patterns": [
@@ -26,3 +30,4 @@ Please create a PR, adding your Business Central NuGet feeds to BcNuGetFeeds.jso
         ]
     }
 ```
+

@@ -5,18 +5,22 @@ If the feed is private, the contact column contains the email address to contact
 
 | Owner | Public | Content | View feed | View json | Contact |
 |---|:--:|---|:--:|:--:|:--:|
-| Continia | ✅ | This feed contains NuGet packages for AppSource Apps created by Continia | [View feed](https://dev.azure.com/continia-repository/ContiniaBCPublicFeeds/_artifacts/feed/AppSourceApps) | [View json](https://github.com/directions4partners/BcNuGetFeeds/blob/main/BcNuGetFeeds.json#L14) | [Contact](mailto:support@continia.com) |
+| Continia | ✅ | This feed contains NuGet packages for AppSource Apps created by Continia | [View feed](https://dev.azure.com/continia-repository/ContiniaBCPublicFeeds/_artifacts/feed/AppSourceApps) | [View json](https://github.com/directions4partners/BcNuGetFeeds/blob/main/BcNuGetFeeds.json#L14) | - |
 | Directions for Partners | ✅ | This feed contains all NuGet packages created by repositories in the Directions4partners organization | [View feed](https://github.com/orgs/directions4partners/packages) | [View json](https://github.com/directions4partners/BcNuGetFeeds/blob/main/BcNuGetFeeds.json#L2) | [Contact](mailto:freddy@directions4partners.com) |
 
 ## Contributing
-Please create a PR, adding your Business Central NuGet feeds to BcNuGetFeeds.json in the following format:
+
+> **⚠️ Important:**  
+> Please do not include any information, which you are not allowed to share
+
+If you are aware of NuGet feeds, which should be in this list, please create a PR, adding the Business Central NuGet feed to BcNuGetFeeds.json in the following format:
 
 ```json
     {
         "owner": "Legal entity owning the NuGet feed",
         "public": true,
         "description": "Feed description",
-        "contact": "contact email",
+        "contact": "contact email (optional if public feed)",
         "viewfeed": "URL where you can view the feed content",
         "url": "NuGet server Url",
         "patterns": [
@@ -27,3 +31,4 @@ Please create a PR, adding your Business Central NuGet feeds to BcNuGetFeeds.jso
         ]
     }
 ```
+
