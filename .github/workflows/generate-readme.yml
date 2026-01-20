@@ -1,0 +1,44 @@
+name: Generate README
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'BcNuGetFeeds.json'
+      - 'README.template.md'
+      - 'Generate-README.ps1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate README.md
+        shell: pwsh
+        run: |
+          ./Generate-README.ps1 -RepoUrl "https://github.com/${{ github.repository }}"
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain README.md)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git commit -m "Auto-generate README.md from template [skip ci]"
+          git push

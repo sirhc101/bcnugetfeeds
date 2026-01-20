@@ -1,11 +1,26 @@
 # NuGet Feeds for Business Central Apps
 This repository contains a list of all public or private NuGet feeds for Business Central apps.
 
-| Owner | Public | Content | View feed | NuGetServerUrl | Fingerprints | Contact |
-|---|:--:|---|:--:|:--:|:--:|:--:|
-| {{owner}} | {{public}} | {{description}} | [View feed]({{viewfeed}) | [TrustedNuGetFeed]({{trustedNuGetFeed}}) | [Contact](mailto:{{contact}}) |
+| Owner | Public | Content | View feed | View json | Contact |
+|---|:--:|---|:--:|:--:|:--:|
+{{TABLE_ROWS}}
 
-## Using public GitHub packages NuGet feeds
-GitHub packages NuGet feeds can be public, but you still need to provide a NuGet token with read:packages permission in order to use the feed. This can be achieved by creating a personal access token with read:packages permissions as the only thing. This PAT will not have access to anything, except search and download your private NuGet packages or public NuGet packages. You can also use your local token (gh auth token) if you add the read:packages scope to the scopes when using gh auth login.
+## Contributing
+Please create a PR, adding your Business Central NuGet feeds to BcNuGetFeeds.json in the following format:
 
-## 
+```json
+    {
+        "owner": "Legal entity owning the NuGet feed",
+        "public": true,
+        "description": "Feed description",
+        "contact": "contact email",
+        "viewfeed": "URL where you can view the feed content",
+        "url": "NuGet server Url",
+        "patterns": [
+            "Array of patterns (optional)"
+        ],
+        "fingerprints": [
+            "Array of fingerprints (optional)"
+        ]
+    }
+```
