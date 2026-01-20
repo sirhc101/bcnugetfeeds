@@ -1,0 +1,7 @@
+[
+    {
+        "url": "https://nuget.pkg.github.com/directions4partners/index.json",
+        "patterns": [ "*" ],
+        "fingerprints": []
+    }
+]
