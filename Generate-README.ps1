@@ -52,8 +52,11 @@ foreach ($feed in $sortedFeeds) {
     
     $publicIcon = if ($feed.public) { "✅" } else { "❌" }
     
+    # Handle optional contact field
+    $contactCell = if ($feed.contact) { "[Contact](mailto:$($feed.contact))" } else { "-" }
+    
     # Build the table row
-    $row = "| $($feed.owner) | $publicIcon | $($feed.description) | [View feed]($($feed.viewfeed)) | [View json]($viewJsonUrl) | [Contact](mailto:$($feed.contact)) |"
+    $row = "| $($feed.owner) | $publicIcon | $($feed.description) | [View feed]($($feed.viewfeed)) | [View json]($viewJsonUrl) | $contactCell |"
     $tableRows += $row
 }
 

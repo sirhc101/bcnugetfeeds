@@ -31,7 +31,7 @@ jobs:
           Write-Host "✅ JSON syntax is valid" -ForegroundColor Green
           
           $errors = @()
-          $requiredFields = @('owner', 'public', 'description', 'contact', 'viewfeed', 'url')
+          $requiredFields = @('owner', 'public', 'description', 'viewfeed', 'url')
           
           if ($json -isnot [System.Array]) {
             Write-Host "❌ BcNuGetFeeds.json must be an array" -ForegroundColor Red
@@ -45,6 +45,11 @@ jobs:
               if (-not $entry.PSObject.Properties[$field]) {
                 $errors += "Entry '$entryName': Missing required field '$field'"
               }
+            }
+            
+            # Contact is required for private feeds
+            if (-not $entry.public -and -not $entry.contact) {
+              $errors += "Entry '$entryName': Field 'contact' is required for private feeds"
             }
             
             # Validate field types
