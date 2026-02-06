@@ -68,5 +68,18 @@
         ],
         "fingerprints": [
         ]
+    },
+    {
+        "owner": "365 business development",
+        "name": "MSDyn365BCRuntimeApps",
+        "public": true,
+        "description": "This feed contains NuGet packages with runtime packages for all 365 business development apps.",
+        "contact": "info@365businessdev.com",
+        "viewfeed": "https://365businessdev.visualstudio.com/Public/_artifacts/feed/MSDyn365BCRuntimeApps",
+        "url": "https://365businessdev.pkgs.visualstudio.com/Public/_packaging/MSDyn365BCRuntimeApps/nuget/v3/index.json",
+        "patterns": [
+            "*"
+        ],
+        "fingerprints": []
     }
 ]
